@@ -17,7 +17,8 @@ import {
   CreditCard,
   Copy,
   CheckCircle2,
-  FileText,
+  Lock,
+  Zap,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -31,34 +32,38 @@ export const BookingModal: React.FC = () => {
     bookingQuestions,
     blockedDates,
     timeSlots,
+    activeDemoPackage,
+    setActiveDemoPackage,
     createBookingRequest,
     uploadPaymentProof,
   } = useMua();
 
+  const isSignature = activeDemoPackage === 'SIGNATURE';
+
   // Multi-Step State
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   
-  // Step 1 State
+  // Basic Form State (For Essential)
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(selectedServiceForBooking || services[0]);
   const [eventDate, setEventDate] = useState<string>('2026-09-14');
   const [eventTime, setEventTime] = useState<string>('10:00 AM');
   const [location, setLocation] = useState<string>('SoHo Studio (New York)');
   const [numberOfFaces, setNumberOfFaces] = useState<number>(1);
 
-  // Step 2 State
+  // Signature Intake State
   const [stylePreference, setStylePreference] = useState<string>('Luminous Dewy Skin with Soft Winged Eye');
   const [customAnswers, setCustomAnswers] = useState<Record<string, string>>({});
   const [inspirationImage] = useState<string>(
     'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600&auto=format&fit=crop'
   );
 
-  // Step 3 State
+  // Contact State
   const [clientName, setClientName] = useState<string>('');
   const [clientPhone, setClientPhone] = useState<string>('');
   const [clientEmail, setClientEmail] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
 
-  // Step 4 & 5 State
+  // Confirmation State
   const [createdRef, setCreatedRef] = useState<string | null>(null);
   const [paymentProof, setPaymentProof] = useState<string | null>(null);
   const [isCopiedZelle, setIsCopiedZelle] = useState<boolean>(false);
@@ -90,13 +95,13 @@ export const BookingModal: React.FC = () => {
       clientEmail,
       eventType: activeService.title,
       eventDate,
-      eventTime,
+      eventTime: isSignature ? eventTime : '10:00 AM',
       location,
       numberOfFaces,
-      stylePreference,
-      customAnswers,
+      stylePreference: isSignature ? stylePreference : 'Standard Glam',
+      customAnswers: isSignature ? customAnswers : {},
       notes,
-      inspirationImage,
+      inspirationImage: isSignature ? inspirationImage : undefined,
       paymentAmount: totalAmount,
     });
 
@@ -124,7 +129,36 @@ export const BookingModal: React.FC = () => {
           exit={{ opacity: 0, scale: 0.95 }}
           className="relative max-w-3xl w-full bg-[#FAF8F5] text-[#1F1A17] rounded-3xl overflow-hidden shadow-2xl my-auto border border-[#EFE8DF]"
         >
-          {/* Header Bar */}
+          {/* Top Package Banner Notice */}
+          <div className={`px-6 py-2.5 text-xs font-semibold flex items-center justify-between border-b ${
+            isSignature
+              ? 'bg-[#1F1A17] text-[#FAF8F5] border-[#C5A880]/30'
+              : 'bg-[#F5F0EB] text-[#6B5B52] border-[#EFE8DF]'
+          }`}>
+            <div className="flex items-center gap-2">
+              <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
+                isSignature ? 'bg-[#C5A880] text-[#1F1A17]' : 'bg-[#EFE8DF] text-[#1F1A17]'
+              }`}>
+                {isSignature ? 'Signature $500 Active' : 'Essential $300 Active'}
+              </span>
+              <span className="hidden sm:inline">
+                {isSignature
+                  ? '⚡ Unlocked: 5-Step Calendar, Time Slots & Custom Intake Questionnaire'
+                  : 'Basic Inquiry Request Form Mode'}
+              </span>
+            </div>
+
+            <button
+              onClick={() => setActiveDemoPackage(isSignature ? 'ESSENTIAL' : 'SIGNATURE')}
+              className={`text-[11px] underline font-bold uppercase tracking-wider ${
+                isSignature ? 'text-[#C5A880] hover:text-white' : 'text-[#8C6D53] hover:text-[#1F1A17]'
+              }`}
+            >
+              Switch to {isSignature ? '$300 Essential' : '$500 Signature'}
+            </button>
+          </div>
+
+          {/* Modal Header Bar */}
           <div className="bg-[#F5F0EB] px-6 py-4 border-b border-[#EFE8DF] flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-8 h-8 rounded-full bg-[#1F1A17] text-[#FAF8F5] flex items-center justify-center font-bold text-xs">
@@ -132,11 +166,21 @@ export const BookingModal: React.FC = () => {
               </span>
               <div>
                 <h3 className="font-serif font-bold text-base text-[#1F1A17]">
-                  {step === 1 && 'Step 1: Choose Service & Date'}
-                  {step === 2 && 'Step 2: Style & Intake Questionnaire'}
-                  {step === 3 && 'Step 3: Contact & Event Notes'}
-                  {step === 4 && 'Step 4: Confirm Booking Request'}
-                  {step === 5 && 'Appointment Request Submitted!'}
+                  {isSignature ? (
+                    <>
+                      {step === 1 && 'Step 1: Choose Service & Date'}
+                      {step === 2 && 'Step 2: Style & Intake Questionnaire'}
+                      {step === 3 && 'Step 3: Contact & Event Notes'}
+                      {step === 4 && 'Step 4: Confirm Booking Request'}
+                      {step === 5 && 'Appointment Request Submitted!'}
+                    </>
+                  ) : (
+                    <>
+                      {step === 1 && 'Basic Booking Request Form'}
+                      {step === 4 && 'Request Reference Generated'}
+                      {step === 5 && 'Inquiry Received'}
+                    </>
+                  )}
                 </h3>
                 <p className="text-[11px] text-[#8C6D53]">
                   {profile.name} • US Beauty Appointment Engine
@@ -149,19 +193,131 @@ export const BookingModal: React.FC = () => {
             </button>
           </div>
 
-          {/* Progress Indicator */}
-          <div className="w-full bg-[#EFE8DF] h-1.5 flex">
-            <div
-              className="bg-[#1F1A17] h-full transition-all duration-500"
-              style={{ width: `${(step / 5) * 100}%` }}
-            />
-          </div>
-
           {/* Body Content */}
           <div className="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
             
-            {/* STEP 1: SERVICE & CALENDAR */}
-            {step === 1 && (
+            {/* ESSENTIAL MODE: SIMPLE INQUIRY FORM */}
+            {!isSignature && step === 1 && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSubmitBooking();
+                }}
+                className="space-y-4"
+              >
+                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs flex items-center gap-2">
+                  <Lock className="w-4 h-4 text-amber-700 shrink-0" />
+                  <span>
+                    <strong>Essential $300 Mode:</strong> Basic booking inquiry form. Multi-step calendar, time slots, &amp; custom intake questions are unlocked in the <strong>$500 Signature package</strong>!
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                    Select Makeup Service
+                  </label>
+                  <select
+                    value={activeService.id}
+                    onChange={(e) => {
+                      const found = services.find((s) => s.id === e.target.value);
+                      if (found) setSelectedService(found);
+                    }}
+                    className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] font-semibold outline-none"
+                  >
+                    {services.map((s) => (
+                      <option key={s.id} value={s.id}>
+                        {s.title} — ${s.price.toFixed(2)} USD ({s.duration})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                      Your Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={clientName}
+                      onChange={(e) => setClientName(e.target.value)}
+                      placeholder="e.g. Audrey Vance"
+                      className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={clientEmail}
+                      onChange={(e) => setClientEmail(e.target.value)}
+                      placeholder="audrey@example.com"
+                      className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={clientPhone}
+                      onChange={(e) => setClientPhone(e.target.value)}
+                      placeholder="+1 (917) 555-0198"
+                      className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                      Preferred Date *
+                    </label>
+                    <input
+                      type="date"
+                      required
+                      value={eventDate}
+                      onChange={(e) => setEventDate(e.target.value)}
+                      className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
+                    Event Notes / Location Message
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Tell us about your event, location, and makeup preferences..."
+                    className="w-full bg-[#F5F0EB] border border-[#EFE8DF] rounded-xl px-4 py-3 text-xs text-[#1F1A17] outline-none"
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-[#FAF8F5] bg-[#1F1A17] hover:bg-[#382E29] transition shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <span>Submit Basic Request (${activeService.price.toFixed(2)})</span>
+                    <ArrowRight className="w-4 h-4 text-[#C5A880]" />
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* SIGNATURE MODE: STEP 1 SERVICE & CALENDAR */}
+            {isSignature && step === 1 && (
               <div className="space-y-6">
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-2">
@@ -274,12 +430,12 @@ export const BookingModal: React.FC = () => {
               </div>
             )}
 
-            {/* STEP 2: INTAKE QUESTIONNAIRE */}
-            {step === 2 && (
+            {/* SIGNATURE MODE: STEP 2 INTAKE QUESTIONNAIRE */}
+            {isSignature && step === 2 && (
               <div className="space-y-6">
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-semibold mb-2">
-                    Preferred Makeup Style & Finish
+                    Preferred Makeup Style &amp; Finish
                   </label>
                   <input
                     type="text"
@@ -371,8 +527,8 @@ export const BookingModal: React.FC = () => {
               </div>
             )}
 
-            {/* STEP 3: CONTACT INFORMATION */}
-            {step === 3 && (
+            {/* SIGNATURE MODE: STEP 3 CONTACT INFO */}
+            {isSignature && step === 3 && (
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs uppercase tracking-wider text-[#8C6D53] font-bold mb-1.5">
@@ -443,7 +599,7 @@ export const BookingModal: React.FC = () => {
               </div>
             )}
 
-            {/* STEP 4: REVIEW & DEPOSIT */}
+            {/* STEP 4: REVIEW & DEPOSIT (BOTH MODES) */}
             {step === 4 && createdRef && (
               <div className="space-y-6">
                 <div className="bg-[#1F1A17] text-[#FAF8F5] p-5 rounded-2xl border border-[#C5A880] text-center space-y-2">
@@ -532,7 +688,6 @@ export const BookingModal: React.FC = () => {
                     onClick={closeBookingModal}
                     className="w-full sm:w-auto px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#FAF8F5] bg-[#1F1A17] hover:bg-[#382E29] transition shadow-lg flex items-center justify-center gap-2"
                   >
-                    <FileText className="w-4 h-4 text-[#C5A880]" />
                     <span>Track Booking Status Online</span>
                   </a>
 
@@ -548,8 +703,8 @@ export const BookingModal: React.FC = () => {
 
           </div>
 
-          {/* Footer Controls */}
-          {step <= 3 && (
+          {/* Footer Controls (Signature Mode) */}
+          {isSignature && step <= 3 && (
             <div className="bg-[#F5F0EB] px-6 py-4 border-t border-[#EFE8DF] flex items-center justify-between">
               {step > 1 ? (
                 <button

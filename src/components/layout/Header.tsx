@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useMua } from '../../context/MuaContext';
-import { ShoppingBag, Calendar, Menu, X, Sparkles } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, X, Sparkles, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Header: React.FC = () => {
-  const { profile, openBookingModal, openCart, cartCount } = useMua();
+  const { profile, openBookingModal, openCart, cartCount, activeDemoPackage, showToast } = useMua();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isSignature = activeDemoPackage === 'SIGNATURE';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,14 @@ export const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleCartClick = () => {
+    if (isSignature) {
+      openCart();
+    } else {
+      showToast('🔒 Shopping Bag & Express Checkout UI is an exclusive Signature $500 feature. Switch to Signature in top bar to test!', 'info');
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
@@ -68,13 +77,23 @@ export const Header: React.FC = () => {
         {/* Right Actions (Shopping Bag + Book CTA) */}
         <div className="hidden sm:flex items-center gap-4">
           <button
-            onClick={openCart}
-            className="relative px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-[#1F1A17] bg-[#F5F0EB] hover:bg-[#EFE8DF] border border-[#EFE8DF] transition flex items-center gap-2"
+            onClick={handleCartClick}
+            className={`relative px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition flex items-center gap-2 ${
+              isSignature
+                ? 'text-[#1F1A17] bg-[#F5F0EB] hover:bg-[#EFE8DF] border border-[#EFE8DF]'
+                : 'text-[#6B5B52] bg-[#F5F0EB]/60 border border-[#EFE8DF]'
+            }`}
           >
-            <ShoppingBag className="w-4 h-4 text-[#8C6D53]" />
+            {isSignature ? (
+              <ShoppingBag className="w-4 h-4 text-[#8C6D53]" />
+            ) : (
+              <Lock className="w-3.5 h-3.5 text-[#8C6D53]" />
+            )}
             <span>Bag</span>
-            <span className="w-5 h-5 rounded-full bg-[#1F1A17] text-[#FAF8F5] font-mono font-bold text-[10px] flex items-center justify-center">
-              {cartCount}
+            <span className={`w-5 h-5 rounded-full font-mono font-bold text-[10px] flex items-center justify-center ${
+              isSignature ? 'bg-[#1F1A17] text-[#FAF8F5]' : 'bg-[#8C6D53] text-white'
+            }`}>
+              {isSignature ? cartCount : '$500'}
             </span>
           </button>
 
@@ -90,12 +109,12 @@ export const Header: React.FC = () => {
         {/* Mobile Hamburger */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
-            onClick={openCart}
+            onClick={handleCartClick}
             className="p-2 text-[#1F1A17] hover:text-[#8C6D53] transition relative"
             aria-label="Shopping Bag"
           >
             <ShoppingBag className="w-6 h-6" />
-            {cartCount > 0 && (
+            {cartCount > 0 && isSignature && (
               <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#1F1A17] text-[#FAF8F5] font-mono text-[9px] font-bold flex items-center justify-center">
                 {cartCount}
               </span>

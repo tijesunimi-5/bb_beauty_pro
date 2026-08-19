@@ -26,23 +26,24 @@ import {
   ArrowLeft,
   Menu,
   X,
-  RotateCcw,
+  Lock,
 } from 'lucide-react';
 
 export default function DashboardPage() {
-  const { profile, activeDemoPackage, setActiveDemoPackage, resetAllData } = useMua();
+  const { profile, activeDemoPackage, setActiveDemoPackage } = useMua();
   const [activeTab, setActiveTab] = useState<string>('overview');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
+  const isSignature = activeDemoPackage === 'SIGNATURE';
 
   const sidebarLinks = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
     { id: 'requests', label: 'Booking Requests', icon: Calendar },
     { id: 'availability', label: 'Calendar & Slots', icon: Clock },
-    { id: 'questions', label: 'Booking Questions', icon: HelpCircle, requiresSignature: true },
+    { id: 'questions', label: 'Questionnaire Builder', icon: HelpCircle, requiresSignature: true },
     { id: 'portfolio', label: 'Portfolio CMS', icon: ImageIcon },
     { id: 'services', label: 'Services & Pricing', icon: Sparkles },
     { id: 'profile', label: 'Business Profile', icon: User },
-    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'analytics', label: 'Analytics Suite', icon: BarChart3, requiresSignature: true },
   ];
 
   return (
@@ -55,12 +56,12 @@ export default function DashboardPage() {
         <div className="md:hidden bg-[#1C1B1A] border-b border-[#FAF8F5]/10 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="font-serif font-bold text-sm text-[#FAF8F5]">{profile.name}</span>
-            <span className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Dashboard</span>
+            <span className="text-[10px] text-[#C5A880] uppercase tracking-wider font-semibold">Dashboard</span>
           </div>
 
           <button
             onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="p-2 text-[#FAF8F5] hover:text-[#D4AF37]"
+            className="p-2 text-[#FAF8F5] hover:text-[#C5A880]"
           >
             {mobileSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -77,7 +78,7 @@ export default function DashboardPage() {
             {/* Top Brand Info */}
             <div className="pb-6 border-b border-[#FAF8F5]/10">
               <Link href="/" className="group block">
-                <span className="font-serif text-lg font-bold tracking-wider text-[#FAF8F5] uppercase group-hover:text-[#D4AF37] transition">
+                <span className="font-serif text-lg font-bold tracking-wider text-[#FAF8F5] uppercase group-hover:text-[#C5A880] transition">
                   {profile.name}
                 </span>
                 <span className="text-[10px] text-[#C5A880] uppercase tracking-widest block font-light">
@@ -100,7 +101,7 @@ export default function DashboardPage() {
                     }}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition ${
                       isActive
-                        ? 'bg-[#D4AF37] text-[#121110] font-bold shadow-lg'
+                        ? 'bg-[#C5A880] text-[#121110] font-bold shadow-lg'
                         : 'text-[#FAF8F5]/70 hover:text-white hover:bg-[#FAF8F5]/5'
                     }`}
                   >
@@ -109,9 +110,9 @@ export default function DashboardPage() {
                       <span>{link.label}</span>
                     </div>
 
-                    {link.requiresSignature && activeDemoPackage === 'BASIC' && (
-                      <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono uppercase">
-                        Signature
+                    {link.requiresSignature && !isSignature && (
+                      <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono uppercase font-bold flex items-center gap-0.5">
+                        <Lock className="w-2.5 h-2.5" /> $500
                       </span>
                     )}
                   </button>
@@ -120,21 +121,21 @@ export default function DashboardPage() {
             </nav>
           </div>
 
-          {/* Bottom Sidebar Box: Package Simulation */}
+          {/* Bottom Sidebar Box: Package Simulation Toggle */}
           <div className="pt-6 border-t border-[#FAF8F5]/10 space-y-3">
-            <div className="bg-[#121110] p-3 rounded-2xl border border-[#D4AF37]/30 text-xs">
+            <div className="bg-[#121110] p-3 rounded-2xl border border-[#C5A880]/30 text-xs">
               <p className="text-[10px] text-[#C5A880] uppercase tracking-wider font-semibold mb-1">
-                Selected Demo Package
+                Active Package Mode
               </p>
               <div className="flex items-center justify-between">
                 <span className="font-serif font-bold text-[#FAF8F5]">
-                  {activeDemoPackage === 'PREMIUM' ? '$250 Signature' : '$150 Basic'}
+                  {isSignature ? '$500 Signature' : '$300 Essential'}
                 </span>
                 <button
-                  onClick={() => setActiveDemoPackage(activeDemoPackage === 'PREMIUM' ? 'BASIC' : 'PREMIUM')}
-                  className="text-[10px] text-[#D4AF37] hover:underline font-semibold"
+                  onClick={() => setActiveDemoPackage(isSignature ? 'ESSENTIAL' : 'SIGNATURE')}
+                  className="text-[10px] text-[#C5A880] hover:underline font-bold uppercase tracking-wider"
                 >
-                  Toggle
+                  Switch
                 </button>
               </div>
             </div>
@@ -151,14 +152,63 @@ export default function DashboardPage() {
 
         {/* Main Content Viewport */}
         <main className="flex-1 p-6 sm:p-10 max-w-7xl w-full mx-auto">
-          {activeTab === 'overview' && <DashboardOverview onNavigateTab={(t) => setActiveTab(t)} />}
+          {activeTab === 'overview' && <DashboardOverview />}
           {activeTab === 'requests' && <BookingManager />}
           {activeTab === 'availability' && <AvailabilityManager />}
-          {activeTab === 'questions' && <QuestionsManager />}
+          
+          {activeTab === 'questions' && (
+            isSignature ? (
+              <QuestionsManager />
+            ) : (
+              <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
+                <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
+                  <Lock className="w-8 h-8" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Questionnaire Builder Locked</h3>
+                  <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
+                    Custom Intake Questionnaire Builder is an exclusive feature included in the <strong>$500 Signature Digital System</strong> package.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveDemoPackage('SIGNATURE')}
+                  className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition shadow-lg flex items-center justify-center gap-2 mx-auto"
+                >
+                  <Crown className="w-4 h-4" />
+                  <span>Unlock Signature Package ($500)</span>
+                </button>
+              </div>
+            )
+          )}
+
           {activeTab === 'portfolio' && <PortfolioManager />}
           {activeTab === 'services' && <ServicesManager />}
           {activeTab === 'profile' && <BioEditor />}
-          {activeTab === 'analytics' && <AnalyticsView />}
+          
+          {activeTab === 'analytics' && (
+            isSignature ? (
+              <AnalyticsView />
+            ) : (
+              <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
+                <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
+                  <Lock className="w-8 h-8" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Analytics Suite Locked</h3>
+                  <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
+                    E-Commerce Sales &amp; Appointment Conversion Analytics are included in the <strong>$500 Signature Digital System</strong> package.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveDemoPackage('SIGNATURE')}
+                  className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition shadow-lg flex items-center justify-center gap-2 mx-auto"
+                >
+                  <Crown className="w-4 h-4" />
+                  <span>Unlock Signature Package ($500)</span>
+                </button>
+              </div>
+            )
+          )}
         </main>
       </div>
 
