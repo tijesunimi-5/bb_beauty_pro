@@ -3,6 +3,7 @@ import {
   ServiceItem,
   PortfolioItem,
   ProductItem,
+  ProductOrder,
   BookingQuestion,
   BookingRequest,
   Testimonial,
@@ -181,6 +182,58 @@ export const initialProducts: ProductItem[] = [
     ],
     ingredients: ['Shea Butter', 'Ceramides', 'Peptides', 'Sweet Almond Extract']
   }
+];
+
+export const initialProductOrders: ProductOrder[] = [
+  {
+    id: 'BBPRO-ORD-91204',
+    customerName: 'Victoria Sterling',
+    customerPhone: '+1 (917) 502-8812',
+    customerEmail: 'victoria.sterling@example.com',
+    shippingAddress: '740 Park Avenue, Apt 14B',
+    cityStateZip: 'New York, NY 10021',
+    items: [
+      {
+        product: initialProducts[0],
+        selectedShade: initialProducts[0].shades[0], // Nude Silk
+        quantity: 2,
+      },
+      {
+        product: initialProducts[1],
+        selectedShade: initialProducts[1].shades[1], // Petal Nude
+        quantity: 1,
+      },
+    ],
+    subtotal: 82.00,
+    tax: 7.28,
+    shippingCost: 0,
+    totalAmount: 89.28,
+    paymentMethod: 'Apple Pay',
+    status: 'Processing',
+    createdAt: '2026-08-19T18:40:00.000Z',
+  },
+  {
+    id: 'BBPRO-ORD-91205',
+    customerName: 'Maya Lin',
+    customerPhone: '+1 (310) 994-3011',
+    customerEmail: 'maya.lin@example.com',
+    shippingAddress: '412 West End Avenue',
+    cityStateZip: 'New York, NY 10024',
+    items: [
+      {
+        product: initialProducts[0],
+        selectedShade: initialProducts[0].shades[1], // Rose Quartz
+        quantity: 1,
+      },
+    ],
+    subtotal: 28.00,
+    tax: 2.49,
+    shippingCost: 5.99,
+    totalAmount: 36.48,
+    paymentMethod: 'Credit Card (Visa)',
+    status: 'Shipped',
+    createdAt: '2026-08-18T11:15:00.000Z',
+  },
 ];
 
 export const initialPortfolio: PortfolioItem[] = [

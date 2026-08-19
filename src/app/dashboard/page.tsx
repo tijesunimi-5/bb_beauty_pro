@@ -7,21 +7,19 @@ import { DemoNav } from '../../components/layout/DemoNav';
 import { ToastContainer } from '../../components/ui/Toast';
 import { DashboardOverview } from '../../components/dashboard/DashboardOverview';
 import { BookingManager } from '../../components/dashboard/BookingManager';
+import { OrdersManager } from '../../components/dashboard/OrdersManager';
 import { AvailabilityManager } from '../../components/dashboard/AvailabilityManager';
 import { QuestionsManager } from '../../components/dashboard/QuestionsManager';
 import { PortfolioManager } from '../../components/dashboard/PortfolioManager';
 import { ServicesManager } from '../../components/dashboard/ServicesManager';
-import { BioEditor } from '../../components/dashboard/BioEditor';
-import { AnalyticsView } from '../../components/dashboard/AnalyticsView';
 import {
   LayoutDashboard,
   Calendar,
+  ShoppingBag,
   Clock,
   HelpCircle,
   Image as ImageIcon,
   Sparkles,
-  User,
-  BarChart3,
   Crown,
   ArrowLeft,
   Menu,
@@ -36,14 +34,13 @@ export default function DashboardPage() {
   const isSignature = activeDemoPackage === 'SIGNATURE';
 
   const sidebarLinks = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'requests', label: 'Booking Requests', icon: Calendar },
-    { id: 'availability', label: 'Calendar & Slots', icon: Clock },
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard, requiresSignature: false },
+    { id: 'requests', label: 'Service Requests', icon: Calendar, requiresSignature: false },
+    { id: 'orders', label: 'Product Orders', icon: ShoppingBag, requiresSignature: false },
+    { id: 'availability', label: 'Calendar & Slots', icon: Clock, requiresSignature: true },
     { id: 'questions', label: 'Questionnaire Builder', icon: HelpCircle, requiresSignature: true },
-    { id: 'portfolio', label: 'Portfolio CMS', icon: ImageIcon },
-    { id: 'services', label: 'Services & Pricing', icon: Sparkles },
-    { id: 'profile', label: 'Business Profile', icon: User },
-    { id: 'analytics', label: 'Analytics Suite', icon: BarChart3, requiresSignature: true },
+    { id: 'portfolio', label: 'Portfolio CMS', icon: ImageIcon, requiresSignature: true },
+    { id: 'services', label: 'Services & Pricing', icon: Sparkles, requiresSignature: true },
   ];
 
   return (
@@ -56,7 +53,7 @@ export default function DashboardPage() {
         <div className="md:hidden bg-[#1C1B1A] border-b border-[#FAF8F5]/10 p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="font-serif font-bold text-sm text-[#FAF8F5]">{profile.name}</span>
-            <span className="text-[10px] text-[#C5A880] uppercase tracking-wider font-semibold">Dashboard</span>
+            <span className="text-[10px] text-[#C5A880] uppercase tracking-wider font-semibold">Artist Portal</span>
           </div>
 
           <button
@@ -154,20 +151,20 @@ export default function DashboardPage() {
         <main className="flex-1 p-6 sm:p-10 max-w-7xl w-full mx-auto">
           {activeTab === 'overview' && <DashboardOverview />}
           {activeTab === 'requests' && <BookingManager />}
-          {activeTab === 'availability' && <AvailabilityManager />}
+          {activeTab === 'orders' && <OrdersManager />}
           
-          {activeTab === 'questions' && (
+          {activeTab === 'availability' && (
             isSignature ? (
-              <QuestionsManager />
+              <AvailabilityManager />
             ) : (
               <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
                 <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
                   <Lock className="w-8 h-8" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Questionnaire Builder Locked</h3>
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Calendar &amp; Time Slots Control Locked</h3>
                   <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
-                    Custom Intake Questionnaire Builder is an exclusive feature included in the <strong>$500 Signature Digital System</strong> package.
+                    In the <strong>$300 Essential package</strong>, clients simply submit their preferred event date. Custom calendar blocking and hourly time slots are an exclusive feature of the <strong>$500 Signature package</strong>.
                   </p>
                 </div>
                 <button
@@ -181,22 +178,68 @@ export default function DashboardPage() {
             )
           )}
 
-          {activeTab === 'portfolio' && <PortfolioManager />}
-          {activeTab === 'services' && <ServicesManager />}
-          {activeTab === 'profile' && <BioEditor />}
-          
-          {activeTab === 'analytics' && (
+          {activeTab === 'questions' && (
             isSignature ? (
-              <AnalyticsView />
+              <QuestionsManager />
             ) : (
               <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
                 <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
                   <Lock className="w-8 h-8" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Analytics Suite Locked</h3>
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Questionnaire Builder Locked</h3>
                   <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
-                    E-Commerce Sales &amp; Appointment Conversion Analytics are included in the <strong>$500 Signature Digital System</strong> package.
+                    Custom Intake Questionnaire Builder is included in the <strong>$500 Signature package</strong>.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveDemoPackage('SIGNATURE')}
+                  className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition shadow-lg flex items-center justify-center gap-2 mx-auto"
+                >
+                  <Crown className="w-4 h-4" />
+                  <span>Unlock Signature Package ($500)</span>
+                </button>
+              </div>
+            )
+          )}
+
+          {activeTab === 'portfolio' && (
+            isSignature ? (
+              <PortfolioManager />
+            ) : (
+              <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
+                <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
+                  <Lock className="w-8 h-8" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Portfolio CMS Locked</h3>
+                  <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
+                    Portfolio Content Management &amp; Uploads are managed by our agency team in Essential $300, and unlocked as a self-serve CMS in the <strong>$500 Signature package</strong>.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setActiveDemoPackage('SIGNATURE')}
+                  className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition shadow-lg flex items-center justify-center gap-2 mx-auto"
+                >
+                  <Crown className="w-4 h-4" />
+                  <span>Unlock Signature Package ($500)</span>
+                </button>
+              </div>
+            )
+          )}
+
+          {activeTab === 'services' && (
+            isSignature ? (
+              <ServicesManager />
+            ) : (
+              <div className="bg-[#1C1B1A] border border-[#C5A880]/40 rounded-3xl p-10 text-center space-y-6 max-w-xl mx-auto shadow-2xl">
+                <div className="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center mx-auto">
+                  <Lock className="w-8 h-8" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-bold text-[#FAF8F5]">Services &amp; Pricing Management Locked</h3>
+                  <p className="text-xs text-[#FAF8F5]/70 leading-relaxed">
+                    Custom service package &amp; price editing functions are included in the <strong>$500 Signature package</strong>.
                   </p>
                 </div>
                 <button

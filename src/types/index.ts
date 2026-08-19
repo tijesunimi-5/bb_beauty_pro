@@ -52,6 +52,23 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface ProductOrder {
+  id: string; // e.g. "BBPRO-ORD-91204"
+  customerName: string;
+  customerPhone: string;
+  customerEmail: string;
+  shippingAddress: string;
+  cityStateZip: string;
+  items: CartItem[];
+  subtotal: number;
+  tax: number;
+  shippingCost: number;
+  totalAmount: number; // in USD ($)
+  paymentMethod: string; // e.g. "Apple Pay" or "Credit Card"
+  status: 'Processing' | 'Shipped' | 'Delivered';
+  createdAt: string;
+}
+
 export interface BookingQuestion {
   id: string;
   question: string;
@@ -65,7 +82,7 @@ export interface BookingQuestion {
 export type BookingStatus = 'Pending' | 'Payment Submitted' | 'Approved' | 'Rejected' | 'Completed';
 
 export interface BookingRequest {
-  id: string; // e.g. "AURA-8402"
+  id: string; // e.g. "BBPRO-8402"
   clientName: string;
   clientPhone: string;
   clientEmail: string;
