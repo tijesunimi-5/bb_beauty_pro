@@ -126,7 +126,7 @@ export const MuaProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
   const [selectedServiceForBooking, setSelectedServiceForBooking] = useState<ServiceItem | null>(null);
-  const [activeBookingRef, setActiveBookingRef] = useState<string | null>('AURA-8402');
+  const [activeBookingRef, setActiveBookingRef] = useState<string | null>('BBPRO-8402');
   const [activeDemoPackage, setActiveDemoPackage] = useState<'ESSENTIAL' | 'SIGNATURE'>('SIGNATURE');
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
@@ -404,7 +404,7 @@ export const MuaProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Booking Requests
   const createBookingRequest = (data: Omit<BookingRequest, 'id' | 'status' | 'createdAt'>): string => {
     const randomNum = Math.floor(1000 + Math.random() * 9000);
-    const newRef = `AURA-${randomNum}`;
+    const newRef = `BBPRO-${randomNum}`;
     const newRequest: BookingRequest = {
       ...data,
       id: newRef,

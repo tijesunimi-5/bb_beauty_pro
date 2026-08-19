@@ -30,7 +30,7 @@ import { motion } from 'framer-motion';
 
 function StatusContent() {
   const searchParams = useSearchParams();
-  const initialRef = searchParams.get('ref') || 'AURA-8402';
+  const initialRef = searchParams.get('ref') || 'BBPRO-8402';
   const { bookingRequests, profile, uploadPaymentProof } = useMua();
 
   const [searchRef, setSearchRef] = useState<string>(initialRef);
@@ -39,7 +39,7 @@ function StatusContent() {
   useEffect(() => {
     if (searchRef) {
       const found = bookingRequests.find(
-        (r) => r.id.toLowerCase() === searchRef.trim().toLowerCase() || r.id.toLowerCase() === `aura-${searchRef.trim().toLowerCase()}`
+        (r) => r.id.toLowerCase() === searchRef.trim().toLowerCase() || r.id.toLowerCase() === `bbpro-${searchRef.trim().toLowerCase()}`
       );
       setActiveRequest(found || null);
     }
@@ -263,7 +263,7 @@ function StatusContent() {
               We couldn&apos;t find a booking matching &quot;{searchRef}&quot;. Try clicking a demo reference code below:
             </p>
             <div className="flex justify-center gap-2 pt-2">
-              {['AURA-8402', 'AURA-8403'].map((code) => (
+              {['BBPRO-8402', 'BBPRO-8403'].map((code) => (
                 <button
                   key={code}
                   onClick={() => setSearchRef(code)}

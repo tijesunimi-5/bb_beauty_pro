@@ -19,23 +19,23 @@ export const suggestedQuestionsPreset = [
 ];
 
 export const initialArtistProfile: ArtistProfile = {
-  name: 'AURA BEAUTY',
-  title: 'Elena Vance — Celebrity & Master Bridal Artist',
+  name: 'BB BEAUTY PRO',
+  title: 'BB Beauty Pro — Master Beauty & Lip Studio',
   tagline: 'Beauty, Artistry & Confidence.',
-  bio: 'Elena Vance is an acclaimed American beauty entrepreneur and celebrity makeup artist based in New York City. With over 8 years styling red carpet appearances, high-fashion editorials, and luxury destination brides, Elena crafts luminous, effortless looks designed to elevate natural radiance.',
-  philosophy: 'I believe makeup should elevate your spirit, accentuating your unique beauty with precision skincare prep and refined artistry.',
+  bio: 'BB Beauty Pro is a premium American luxury beauty studio based in New York City. With over 8 years styling red carpet appearances, high-fashion editorials, and luxury destination brides, BB Beauty Pro crafts luminous, effortless looks designed to elevate natural radiance.',
+  philosophy: 'We believe makeup should elevate your spirit, accentuating your unique beauty with precision skincare prep and refined artistry.',
   yearsExperience: 8,
   clientCount: 220,
   rating: 4.95,
-  instagram: '@aurabeautystudio',
+  instagram: '@bb_beauty_pro',
   whatsappPhone: '+1 (212) 555-0198',
-  email: 'elena@aurabeautystudio.com',
+  email: 'hello@bbbeautypro.com',
   location: 'SoHo, New York City & Worldwide Destination',
   studioAddress: '482 Broome Street, Studio 4A, SoHo, New York, NY 10013',
   paymentInfo: {
-    zelleEmail: 'payments@aurabeautystudio.com',
-    venmoHandle: '@AuraBeautyStudio',
-    cashAppHandle: '$AuraBeautyNY',
+    zelleEmail: 'payments@bbbeautypro.com',
+    venmoHandle: '@BBBeautyPro',
+    cashAppHandle: '$BBBeautyPro',
     cardAccepted: 'Visa, Mastercard, Amex, Apple Pay',
   },
   heroImageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop',
@@ -266,7 +266,7 @@ export const initialBookingQuestions: BookingQuestion[] = [
 
 export const initialBookingRequests: BookingRequest[] = [
   {
-    id: 'AURA-8402',
+    id: 'BBPRO-8402',
     clientName: 'Audrey Vance',
     clientPhone: '+1 (917) 402-9911',
     clientEmail: 'audrey.vance@example.com',
@@ -290,7 +290,7 @@ export const initialBookingRequests: BookingRequest[] = [
     createdAt: '2026-08-18T14:22:00.000Z'
   },
   {
-    id: 'AURA-8403',
+    id: 'BBPRO-8403',
     clientName: 'Sophia Miller',
     clientPhone: '+1 (310) 882-1049',
     clientEmail: 'sophia.m@example.com',
@@ -318,7 +318,7 @@ export const initialTestimonials: Testimonial[] = [
     id: 't-1',
     clientName: 'Victoria Sterling',
     eventType: 'Hamptons Bride',
-    quote: 'Elena made me feel like the most beautiful, luminous version of myself on my wedding day. My makeup stayed flawless through tears and 12 hours of dancing!',
+    quote: 'BB Beauty Pro made me feel like the most beautiful, luminous version of myself on my wedding day. My makeup stayed flawless through tears and 12 hours of dancing!',
     rating: 5,
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
     date: 'August 2026',
@@ -338,7 +338,7 @@ export const initialTestimonials: Testimonial[] = [
     id: 't-3',
     clientName: 'Jessica Thorne',
     eventType: 'Vogue Fashion Director',
-    quote: 'As a fashion director, finding an artist who understands camera light, skin texture, and timing is rare. Elena is extraordinary.',
+    quote: 'As a fashion director, finding an artist who understands camera light, skin texture, and timing is rare. BB Beauty Pro is extraordinary.',
     rating: 5,
     avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     date: 'June 2026',
@@ -354,7 +354,7 @@ export const initialAnalytics: AnalyticsData = {
   popularService: 'Signature Bridal Glam',
   monthlyRevenue: 18450, // in USD ($)
   trafficSources: [
-    { name: 'Instagram Bio Link', percentage: 54 },
+    { name: 'Instagram Bio Link (@bb_beauty_pro)', percentage: 54 },
     { name: 'TikTok Beauty Video', percentage: 26 },
     { name: 'Word of Mouth / Referral', percentage: 14 },
     { name: 'Google Search / Direct', percentage: 6 }

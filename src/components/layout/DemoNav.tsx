@@ -50,7 +50,7 @@ export const DemoNav: React.FC = () => {
           </Link>
 
           <Link
-            href={`/status?ref=${activeBookingRef || 'AURA-8402'}`}
+            href={`/status?ref=${activeBookingRef || 'BBPRO-8402'}`}
             className={`px-3 py-1 rounded-md transition-all font-medium flex items-center gap-1.5 ${
               pathname.startsWith('/status')
                 ? 'bg-[#C5A880] text-[#1F1A17] font-semibold shadow'
