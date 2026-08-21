@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
     if (isSignature) {
       openCart();
     } else {
-      showToast('🔒 Shopping Bag & Express Checkout UI is an exclusive Signature $500 feature. Switch to $500 Signature page to test!', 'info');
+      showToast('🔒 Shopping Bag & Express Checkout UI is an exclusive Signature feature. Switch to Signature view to test!', 'info');
     }
   };
 
@@ -37,15 +37,15 @@ export const Header: React.FC = () => {
     { name: 'Services', href: '#services' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Lip Collection', href: '#shop' },
-    { name: 'Pricing Packages', href: '#pricing' },
+    { name: 'Studio', href: '#location' },
   ];
 
   return (
     <header
-      className={`sticky top-[41px] z-40 transition-all duration-300 ${
+      className={`sticky top-0 z-40 transition-all duration-300 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-lg border-b border-[#FF6B8B]/30 shadow-md py-3.5'
-          : 'bg-[#FFF9F9]/80 backdrop-blur-md border-b border-[#FF6B8B]/20 py-5'
+          : 'bg-[#FFF9F9]/90 backdrop-blur-md border-b border-[#FF6B8B]/20 py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -88,11 +88,11 @@ export const Header: React.FC = () => {
               <Lock className="w-3.5 h-3.5 text-[#E83E8C]" />
             )}
             <span>Bag</span>
-            <span className={`w-5 h-5 rounded-full font-mono font-bold text-[10px] flex items-center justify-center ${
-              isSignature ? 'bg-gradient-to-r from-[#FF6B8B] to-[#E83E8C] text-white' : 'bg-[#E83E8C] text-white'
-            }`}>
-              {isSignature ? cartCount : '$500'}
-            </span>
+            {isSignature && (
+              <span className="w-5 h-5 rounded-full font-mono font-bold text-[10px] flex items-center justify-center bg-gradient-to-r from-[#FF6B8B] to-[#E83E8C] text-white">
+                {cartCount}
+              </span>
+            )}
           </button>
 
           <button

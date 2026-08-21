@@ -3,7 +3,7 @@ import './globals.css';
 import { MuaProvider } from '../context/MuaContext';
 
 export const metadata: Metadata = {
-  title: 'Aura Glamour Studio — Premium Makeup Artist & Bridal Suite',
+  title: 'BB Beauty Pro — Premium Makeup Artist & Bridal Suite',
   description: 'Luxury editorial makeup artist website and digital booking business system.',
 };
 
