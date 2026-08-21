@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMua } from '../../context/MuaContext';
-import { Sparkles, Zap, ArrowRight, X, Crown, Shield } from 'lucide-react';
+import { LayoutDashboard, X, Zap, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const FloatingPillWidget: React.FC = () => {
   const pathname = usePathname();
-  const { activeDemoPackage } = useMua();
   const [expanded, setExpanded] = useState(false);
 
   const isSignaturePage = pathname.startsWith('/signature');
   const isEssentialPage = pathname === '/';
+  const isDashboardPage = pathname.startsWith('/dashboard');
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
@@ -26,8 +26,8 @@ export const FloatingPillWidget: React.FC = () => {
             className="mb-3 bg-[#1A0B11]/95 text-white border border-[#FF6B8B]/40 rounded-2xl p-4 shadow-2xl backdrop-blur-xl w-64 space-y-3"
           >
             <div className="flex items-center justify-between border-b border-[#FF6B8B]/20 pb-2">
-              <span className="text-[10px] uppercase font-bold text-[#D4AF37] tracking-wider flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#FF6B8B]" /> BB BEAUTY PRO
+              <span className="text-[10px] uppercase font-bold text-[#D4AF37] tracking-wider">
+                BB BEAUTY PRO
               </span>
               <button
                 onClick={() => setExpanded(false)}
@@ -60,11 +60,26 @@ export const FloatingPillWidget: React.FC = () => {
                     : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10'
                 }`}
               >
-                <span className="flex items-center gap-1">
-                  <Zap className="w-3 h-3 text-[#D4AF37]" /> $500 Signature View
-                </span>
+                <span>$500 Signature View</span>
                 {isSignaturePage && <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded uppercase">Active</span>}
               </Link>
+
+              <div className="pt-1 border-t border-white/10">
+                <Link
+                  href="/dashboard"
+                  onClick={() => setExpanded(false)}
+                  className={`w-full px-3 py-2 rounded-xl border flex items-center justify-between transition ${
+                    isDashboardPage
+                      ? 'bg-[#D4AF37] text-[#121110] border-[#D4AF37] font-bold'
+                      : 'bg-[#D4AF37]/15 border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37]/30'
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5 font-bold">
+                    <LayoutDashboard className="w-3.5 h-3.5" /> Artist Dashboard
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
@@ -77,9 +92,8 @@ export const FloatingPillWidget: React.FC = () => {
       >
         <span className="w-2 h-2 rounded-full bg-[#FF6B8B] animate-pulse" />
         <span className="text-[11px] tracking-wide">
-          BB BEAUTY PRO • {isSignaturePage ? 'Signature View' : 'Essential View'}
+          BB BEAUTY PRO • {isSignaturePage ? 'Signature' : isDashboardPage ? 'Dashboard' : 'Essential'}
         </span>
-        <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
       </button>
     </div>
   );

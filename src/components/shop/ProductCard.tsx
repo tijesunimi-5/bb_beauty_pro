@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useMua } from '../../context/MuaContext';
 import { ProductItem, ShadeOption } from '../../types';
-import { ShoppingBag, Star, Lock, Heart } from 'lucide-react';
+import { ShoppingBag, Lock, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ProductCardProps {
@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     if (isSignature) {
       addToCart(product, selectedShade);
     } else {
-      showToast('🔒 Shopping Bag & Checkout UI is an exclusive Signature $500 feature. Switch to Signature page to test!', 'info');
+      showToast('🔒 Shopping Bag & Checkout UI is an exclusive Signature feature. Switch to Signature view to test!', 'info');
     }
   };
 
@@ -58,13 +58,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Information */}
       <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
         <div className="space-y-2">
-          <div className="flex items-center gap-1 text-[#D4AF37] text-xs">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-[#D4AF37]" />
-              ))}
-            </div>
-            <span className="text-[#523B44] font-medium ml-1">({product.reviewsCount})</span>
+          <div className="flex items-center gap-1.5 text-[#E83E8C] text-xs font-bold">
+            <span className="bg-[#FFF0F3] px-2 py-0.5 rounded text-[11px] border border-[#FF6B8B]/20">
+              {product.rating} / 5.0 Rating
+            </span>
+            <span className="text-[#523B44] font-medium text-[11px]">({product.reviewsCount} reviews)</span>
           </div>
 
           <h3 className="font-serif text-lg font-bold text-[#221217] group-hover:text-[#E83E8C] transition">
@@ -94,7 +92,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     if (isSignature) {
                       setSelectedShade(shade);
                     } else {
-                      showToast('🔒 Interactive Shade Selector unlocked in $500 Signature Package!', 'info');
+                      showToast('🔒 Interactive Shade Selector unlocked in Signature Package!', 'info');
                     }
                   }}
                   className={`w-6 h-6 rounded-full border-2 transition-all relative ${
@@ -122,7 +120,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             onClick={handleProductAction}
             className={`w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 ${
               isSignature
-                ? 'text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:shadow-lg'
+                ? 'text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:opacity-95'
                 : 'text-[#7E0027] bg-[#FFF0F3] hover:bg-[#FFE4E8] border border-[#FF6B8B]/30'
             }`}
           >

@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { useMua } from '../../context/MuaContext';
 import { ServiceItem } from '../../types';
-import { Sparkles, Clock, Check, Calendar } from 'lucide-react';
+import { Clock, Check, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const ServicesSection: React.FC = () => {
@@ -17,7 +17,6 @@ export const ServicesSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#FF6B8B]/30 text-[#E83E8C] text-xs font-bold uppercase tracking-[0.2em] shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#FF6B8B]" />
             <span>Curated Artistry Services</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#221217]">
@@ -93,7 +92,7 @@ export const ServicesSection: React.FC = () => {
                 <div className="pt-4">
                   <button
                     onClick={() => openBookingModal(service)}
-                    className="w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:shadow-lg transition flex items-center justify-center gap-2 shadow-md"
+                    className="w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:opacity-95 transition flex items-center justify-center gap-2 shadow-md"
                   >
                     <Calendar className="w-4 h-4 text-white" />
                     <span>Book Experience</span>

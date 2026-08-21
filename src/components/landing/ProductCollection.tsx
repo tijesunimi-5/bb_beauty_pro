@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useMua } from '../../context/MuaContext';
 import { ProductCard } from '../shop/ProductCard';
-import { Sparkles, ArrowRight, ShoppingBag, Heart } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Heart } from 'lucide-react';
 
 export const ProductCollection: React.FC = () => {
   const { products } = useMua();
@@ -40,7 +40,7 @@ export const ProductCollection: React.FC = () => {
         <div className="mt-16 text-center">
           <Link
             href="/shop"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-extrabold uppercase tracking-[0.2em] text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:shadow-[0_0_25px_rgba(255,107,139,0.5)] transition group shadow-xl"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-extrabold uppercase tracking-[0.2em] text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:opacity-95 transition group shadow-xl"
           >
             <ShoppingBag className="w-4 h-4 text-white" />
             <span>Explore Full Beauty Collection</span>

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useMua } from '../../context/MuaContext';
-import { ShoppingBag, Calendar, Menu, X, Sparkles, Lock } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, X, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Header: React.FC = () => {
@@ -97,7 +97,7 @@ export const Header: React.FC = () => {
 
           <button
             onClick={() => openBookingModal()}
-            className="px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:shadow-[0_0_20px_rgba(255,107,139,0.4)] transition duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 shadow-md"
+            className="px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:opacity-95 transition duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 shadow-md"
           >
             <Calendar className="w-3.5 h-3.5 text-white" />
             <span>Book Experience</span>
@@ -147,7 +147,6 @@ export const Header: React.FC = () => {
                   className="hover:text-[#E83E8C] transition border-b border-[#FF6B8B]/20 pb-3 flex items-center justify-between"
                 >
                   <span>{link.name}</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#E83E8C]" />
                 </a>
               ))}
 

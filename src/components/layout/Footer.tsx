@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useMua } from '../../context/MuaContext';
-import { Instagram, Phone, Mail, MapPin, Sparkles, Heart } from 'lucide-react';
+import { Instagram, Phone, Mail, MapPin, LayoutDashboard, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { profile } = useMua();
@@ -74,15 +74,14 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs font-medium text-[#FAF8F5]/80">
               <li>
-                <Link href="/status?ref=BBPRO-8402" className="hover:text-[#FF6B8B] transition flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#FF6B8B]" />
+                <Link href="/status?ref=BBPRO-8402" className="hover:text-[#FF6B8B] transition flex items-center gap-1.5 font-semibold">
                   <span>Check Appointment Status (#BBPRO-8402)</span>
                 </Link>
               </li>
-              <li>
-                <Link href="/dashboard" className="hover:text-[#FF6B8B] transition flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>Artist Business Dashboard</span>
+              <li className="pt-1">
+                <Link href="/dashboard" className="hover:text-[#D4AF37] transition flex items-center gap-2 text-[#D4AF37] font-bold bg-white/5 border border-[#D4AF37]/30 px-3 py-2 rounded-xl">
+                  <LayoutDashboard className="w-4 h-4 text-[#D4AF37]" />
+                  <span>Artist Business Dashboard (/dashboard)</span>
                 </Link>
               </li>
               <li className="pt-2 text-[11px] text-[#FAF8F5]/60 flex items-center gap-1">
