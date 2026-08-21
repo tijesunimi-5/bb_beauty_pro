@@ -520,7 +520,7 @@ export const BookingModal: React.FC = () => {
                     </div>
                     <div className="flex-1 text-xs">
                       <p className="font-bold text-[#1F1A17]">Reference Image Attached</p>
-                      <p className="text-[11px] text-[#6B5B52]">Image ready for Elena&apos;s team to review.</p>
+                      <p className="text-[11px] text-[#6B5B52]">Reference Image attached for BB Beauty Pro to review.</p>
                     </div>
                   </div>
                 </div>
@@ -669,7 +669,7 @@ export const BookingModal: React.FC = () => {
                     Deposit Receipt Uploaded!
                   </h3>
                   <p className="text-xs text-[#6B5B52]">
-                    Your booking request <strong className="text-[#1F1A17] font-mono">#{createdRef}</strong> has been submitted to Elena Vance.
+                    Your booking request <strong className="text-[#1F1A17] font-mono">#{createdRef}</strong> has been submitted to BB Beauty Pro.
                   </p>
                 </div>
 
