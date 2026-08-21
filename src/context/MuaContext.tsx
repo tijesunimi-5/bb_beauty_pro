@@ -250,6 +250,7 @@ export const MuaProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const handleSetDemoPackage = (pkg: 'ESSENTIAL' | 'SIGNATURE') => {
+    if (activeDemoPackage === pkg) return;
     setActiveDemoPackage(pkg);
     saveStateToStorage({ activeDemoPackage: pkg });
     showToast(`Switched preview experience to $${pkg === 'ESSENTIAL' ? '300 Essential' : '500 Signature'}`);

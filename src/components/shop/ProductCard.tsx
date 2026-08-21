@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useMua } from '../../context/MuaContext';
 import { ProductItem, ShadeOption } from '../../types';
-import { ShoppingBag, Star, Lock } from 'lucide-react';
+import { ShoppingBag, Star, Lock, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ProductCardProps {
@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     if (isSignature) {
       addToCart(product, selectedShade);
     } else {
-      showToast('🔒 Shopping Bag & Checkout UI is an exclusive Signature $500 feature. Switch to Signature in top bar to test!', 'info');
+      showToast('🔒 Shopping Bag & Checkout UI is an exclusive Signature $500 feature. Switch to Signature page to test!', 'info');
     }
   };
 
@@ -29,12 +29,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`group relative bg-[#FAF8F5] rounded-3xl overflow-hidden border transition-all duration-500 shadow-lg flex flex-col justify-between ${
-        isSignature ? 'border-[#EFE8DF] hover:border-[#C5A880]' : 'border-[#EFE8DF] opacity-95'
+      className={`group relative bg-white rounded-3xl overflow-hidden border-2 transition-all duration-500 shadow-xl flex flex-col justify-between ${
+        isSignature ? 'border-[#FF6B8B]/30 hover:border-[#E83E8C] hover:shadow-2xl' : 'border-[#FF6B8B]/20'
       }`}
     >
       {/* Visual Image Banner */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-[#F5F0EB]">
+      <div className="relative aspect-[4/5] overflow-hidden bg-[#FFF0F3]">
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -44,13 +44,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Bestseller Badge */}
         {product.isBestseller && (
-          <div className="absolute top-4 left-4 bg-[#1F1A17] text-[#FAF8F5] text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-            Bestseller
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#FF6B8B] to-[#E83E8C] text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+            <Heart className="w-3 h-3 fill-white" /> Bestseller
           </div>
         )}
 
         {/* Price Tag */}
-        <div className="absolute top-4 right-4 bg-[#FAF8F5]/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-bold text-[#1F1A17] shadow-md border border-[#EFE8DF]">
+        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-mono font-extrabold text-[#7E0027] shadow-md border border-[#FF6B8B]/30">
           ${product.price.toFixed(2)}
         </div>
       </div>
@@ -58,30 +58,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Information */}
       <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
         <div className="space-y-2">
-          <div className="flex items-center gap-1 text-[#C5A880] text-xs">
+          <div className="flex items-center gap-1 text-[#D4AF37] text-xs">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-[#C5A880]" />
+                <Star key={i} className="w-3.5 h-3.5 fill-[#D4AF37]" />
               ))}
             </div>
-            <span className="text-[#6B5B52] font-medium ml-1">({product.reviewsCount})</span>
+            <span className="text-[#523B44] font-medium ml-1">({product.reviewsCount})</span>
           </div>
 
-          <h3 className="font-serif text-lg font-bold text-[#1F1A17] group-hover:text-[#8C6D53] transition">
+          <h3 className="font-serif text-lg font-bold text-[#221217] group-hover:text-[#E83E8C] transition">
             {product.name}
           </h3>
 
-          <p className="text-xs text-[#6B5B52] font-light leading-relaxed line-clamp-2">
+          <p className="text-xs text-[#523B44] font-medium leading-relaxed line-clamp-2">
             {product.description}
           </p>
 
           {/* Interactive vs Static Shade Selector */}
           <div className="pt-2">
-            <span className="text-[10px] uppercase tracking-wider text-[#8C6D53] font-semibold block mb-2">
+            <span className="text-[10px] uppercase tracking-wider text-[#E83E8C] font-bold block mb-2">
               {isSignature ? (
-                <>Select Shade: <strong className="text-[#1F1A17]">{selectedShade.name}</strong></>
+                <>Select Shade: <strong className="text-[#221217]">{selectedShade.name}</strong></>
               ) : (
-                <>Shades Available: <strong className="text-[#1F1A17]">{product.shades.length} Colors</strong> (Showcase Mode)</>
+                <>Shades Available: <strong className="text-[#221217]">{product.shades.length} Colors</strong> (Showcase)</>
               )}
             </span>
 
@@ -99,7 +99,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   }}
                   className={`w-6 h-6 rounded-full border-2 transition-all relative ${
                     selectedShade.name === shade.name && isSignature
-                      ? 'border-[#1F1A17] scale-110 shadow-md'
+                      ? 'border-[#7E0027] scale-110 shadow-md ring-2 ring-[#FF6B8B]'
                       : 'border-transparent hover:scale-105'
                   }`}
                   style={{ backgroundColor: shade.colorHex }}
@@ -117,23 +117,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Add to Bag CTA */}
-        <div className="pt-4 border-t border-[#EFE8DF]">
+        <div className="pt-4 border-t border-[#FF6B8B]/20">
           <button
             onClick={handleProductAction}
             className={`w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 ${
               isSignature
-                ? 'text-[#FAF8F5] bg-[#1F1A17] hover:bg-[#382E29]'
-                : 'text-[#1F1A17] bg-[#F5F0EB] hover:bg-[#EFE8DF] border border-[#EFE8DF]'
+                ? 'text-white bg-gradient-to-r from-[#FF6B8B] via-[#E83E8C] to-[#D4AF37] hover:shadow-lg'
+                : 'text-[#7E0027] bg-[#FFF0F3] hover:bg-[#FFE4E8] border border-[#FF6B8B]/30'
             }`}
           >
             {isSignature ? (
               <>
-                <ShoppingBag className="w-4 h-4 text-[#C5A880]" />
+                <ShoppingBag className="w-4 h-4 text-white" />
                 <span>Add To Bag — ${product.price.toFixed(2)}</span>
               </>
             ) : (
               <>
-                <Lock className="w-3.5 h-3.5 text-[#8C6D53]" />
+                <Lock className="w-3.5 h-3.5 text-[#E83E8C]" />
                 <span>Product Showcase Only ($300)</span>
               </>
             )}

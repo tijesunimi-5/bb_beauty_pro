@@ -2,8 +2,8 @@
 
 @layer base {
   :root {
-    --background: #FAF8F5;
-    --foreground: #1F1A17;
+    --background: #FFF9F9;
+    --foreground: #221217;
     --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
     --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
@@ -19,17 +19,48 @@
   }
 }
 
-/* Custom Warm Luxury Scrollbar */
+/* Custom Colorful Luxury Animations & Gradients */
+.bg-rose-gold-gradient {
+  background: linear-gradient(135deg, #FF6B8B 0%, #E83E8C 50%, #D4AF37 100%);
+}
+
+.bg-berry-glow {
+  background: linear-gradient(135deg, #7E0027 0%, #B81D47 50%, #30000E 100%);
+}
+
+.bg-blush-card {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF0F3 100%);
+}
+
+.text-gradient-gold-rose {
+  background: linear-gradient(135deg, #E83E8C 0%, #D4AF37 50%, #FF6B8B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-pink-sm {
+  box-shadow: 0 0 20px rgba(255, 107, 139, 0.25);
+}
+
+.glow-pink-lg {
+  box-shadow: 0 0 35px rgba(232, 62, 140, 0.35);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* Custom Colorful Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #FFF0F3;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EFE8DF;
+  background: #FF6B8B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C5A880;
+  background: #E83E8C;
 }
