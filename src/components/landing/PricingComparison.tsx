@@ -4,31 +4,31 @@ import React from 'react';
 import Link from 'next/link';
 import { useMua } from '../../context/MuaContext';
 import { FeatureUnlock } from '../ui/FeatureUnlock';
-import { Sparkles, Check, Crown, ArrowRight, Shield, Zap, ShoppingBag, Calendar } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Check, Crown, ArrowRight, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const PricingComparison: React.FC = () => {
-  const { activeDemoPackage, setActiveDemoPackage, openBookingModal } = useMua();
+  const { activeDemoPackage } = useMua();
 
   const basicFeatures = [
     'Custom Luxury Editorial Landing Page & Brand Identity',
     'Hero, Story, Services & Social Proof Sections',
-    'Standard Booking Request Form',
-    'Lip Gloss Collection Showcase Preview',
+    'Standard Appointment Inquiry Form',
+    'Lip Gloss Collection Showcase & WhatsApp Checkout',
     'Mobile Responsive Design for iOS & Android',
     'Custom Domain Connection (yourbrand.com)',
     'Direct Instagram & Contact Links',
   ];
 
   const signatureFeatures = [
-    'Everything included in Essential $300, PLUS:',
+    'Everything included in Basic ₦350k, PLUS:',
     'Interactive 5-Step Appointment Calendar & Time Slots',
     'Customizable Client Intake Questionnaire Builder',
     'Full Lip Gloss E-Commerce Shop & Shade Selector',
-    'Interactive Shopping Bag Drawer & Express Checkout UI',
+    'Express Online Checkout UI & Payment Receipts',
     'Client Request Reference Tracker (#BBPRO-8402)',
     'Inspiration Image Upload & Event Location Intake',
-    'Professional Artist Management Dashboard',
+    'Professional Self-Serve Artist CMS & Dashboard',
   ];
 
   return (
@@ -43,11 +43,11 @@ export const PricingComparison: React.FC = () => {
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#221217]">
-            Choose the experience that fits your business.
+            Choose the package that fits your business.
           </h2>
 
           <p className="text-xs sm:text-sm text-[#523B44] font-medium leading-relaxed">
-            Position your brand as an established American beauty entrepreneur with a complete digital presence designed to build immediate client trust, eliminate manual back-and-forth, and convert attention into bookings and sales.
+            Position your brand as an established beauty entrepreneur with a complete digital presence designed to build immediate client trust, eliminate manual back-and-forth, and convert attention into bookings and sales.
           </p>
 
           {/* Top Interactive Segmented Package Toggle */}
@@ -61,7 +61,7 @@ export const PricingComparison: React.FC = () => {
                     : 'text-[#523B44] hover:text-[#7E0027]'
                 }`}
               >
-                ESSENTIAL — $300 PAGE
+                BASIC — ₦350K PAGE
               </Link>
 
               <Link
@@ -73,7 +73,7 @@ export const PricingComparison: React.FC = () => {
                 }`}
               >
                 <Crown className="w-3.5 h-3.5" />
-                SIGNATURE — $500 PAGE
+                PRO — ₦500K PAGE
               </Link>
             </div>
           </div>
@@ -82,7 +82,7 @@ export const PricingComparison: React.FC = () => {
         {/* Side-by-Side Pricing Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
           
-          {/* ESSENTIAL — $300 */}
+          {/* BASIC — ₦350k */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,12 +99,12 @@ export const PricingComparison: React.FC = () => {
                   Refined Digital Home
                 </span>
                 <span className="text-xs px-3 py-1 rounded-full bg-[#FFF0F3] text-[#7E0027] font-mono font-extrabold border border-[#FF6B8B]/30">
-                  $300 USD
+                  ₦350,000
                 </span>
               </div>
 
               <h3 className="font-serif text-3xl font-bold text-[#221217] mb-2">
-                Essential
+                Basic Package
               </h3>
 
               <p className="text-xs text-[#523B44] font-medium leading-relaxed mb-6 italic">
@@ -130,11 +130,11 @@ export const PricingComparison: React.FC = () => {
               href="/"
               className="w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#7E0027] bg-[#FFF0F3] hover:bg-[#FFE4E8] border border-[#FF6B8B]/30 transition flex items-center justify-center gap-2"
             >
-              <span>View Essential $300 Page</span>
+              <span>View Basic (₦350k) Page</span>
             </Link>
           </motion.div>
 
-          {/* SIGNATURE — $500 (FLAGSHIP / RECOMMENDED) */}
+          {/* PRO — ₦500k (RECOMMENDED) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ export const PricingComparison: React.FC = () => {
           >
             {/* Recommended Flagship Ribbon */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#D4AF37] via-[#FFF9F9] to-[#D4AF37] text-[#121110] text-[10px] font-extrabold uppercase tracking-[0.25em] px-5 py-1.5 rounded-full shadow-xl flex items-center gap-1.5">
-              <Zap className="w-3 h-3 fill-[#121110]" /> Recommended • Flagship Conversion System
+              <Zap className="w-3 h-3 fill-[#121110]" /> Recommended • Flagship Business System
             </div>
 
             <div>
@@ -157,13 +157,13 @@ export const PricingComparison: React.FC = () => {
                   Complete Digital Business System
                 </span>
                 <div className="text-right">
-                  <span className="font-serif text-3xl font-bold text-[#D4AF37]">$500</span>
-                  <span className="text-[10px] text-white/70 block uppercase font-mono font-bold">USD</span>
+                  <span className="font-serif text-3xl font-bold text-[#D4AF37]">₦500k</span>
+                  <span className="text-[10px] text-white/70 block uppercase font-mono font-bold">₦500,000</span>
                 </div>
               </div>
 
               <h3 className="font-serif text-3xl font-bold text-white mb-2 flex items-center gap-2">
-                Signature System
+                Pro Package
               </h3>
 
               <p className="text-xs text-white/90 font-medium leading-relaxed mb-6 italic">
@@ -172,7 +172,7 @@ export const PricingComparison: React.FC = () => {
 
               <div className="py-4 border-y border-[#FF6B8B]/30 mb-6 bg-[#30000E]/50 p-4 rounded-2xl">
                 <p className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-3 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" /> Complete Signature Capabilities Included:
+                  Pro Capabilities Included:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {signatureFeatures.map((feat, i) => (
@@ -191,7 +191,7 @@ export const PricingComparison: React.FC = () => {
                 className="w-full sm:flex-1 py-4 rounded-full text-xs font-extrabold uppercase tracking-[0.2em] text-[#121110] bg-gradient-to-r from-[#D4AF37] via-[#FFF9F9] to-[#D4AF37] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition flex items-center justify-center gap-2 shadow-xl"
               >
                 <Crown className="w-4 h-4" />
-                <span>View $500 Signature Page</span>
+                <span>View Pro (₦500k) Page</span>
               </Link>
 
               <Link
@@ -220,8 +220,8 @@ export const PricingComparison: React.FC = () => {
               <thead>
                 <tr className="border-b border-[#FF6B8B]/20 uppercase tracking-wider text-[10px] text-[#E83E8C] font-bold">
                   <th className="text-left py-3 px-4">Digital Capability</th>
-                  <th className="text-center py-3 px-4">Essential ($300)</th>
-                  <th className="text-center py-3 px-4 text-[#7E0027] font-extrabold">Signature ($500)</th>
+                  <th className="text-center py-3 px-4">Basic (₦350k)</th>
+                  <th className="text-center py-3 px-4 text-[#7E0027] font-extrabold">Pro (₦500k)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#FF6B8B]/10">
@@ -251,9 +251,9 @@ export const PricingComparison: React.FC = () => {
                   <td className="text-center py-3 px-4 text-emerald-600 font-bold">✓</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-semibold">Shopping Cart Drawer &amp; Checkout UI</td>
-                  <td className="text-center py-3 px-4 text-gray-400">—</td>
-                  <td className="text-center py-3 px-4 text-emerald-600 font-bold">✓</td>
+                  <td className="py-3 px-4 font-semibold">Shopping Bag &amp; WhatsApp Checkout</td>
+                  <td className="text-center py-3 px-4 text-emerald-600 font-bold">✓ (WhatsApp Link)</td>
+                  <td className="text-center py-3 px-4 text-emerald-600 font-bold">✓ (Online Payment Modal)</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4 font-semibold">Custom Questionnaire Builder</td>

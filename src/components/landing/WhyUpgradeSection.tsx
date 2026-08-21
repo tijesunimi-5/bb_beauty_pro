@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, ArrowRight, MessageSquare, Image as ImageIcon, ShoppingBag, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowRight, MessageSquare, Image as ImageIcon, ShoppingBag, CheckCircle2, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const WhyUpgradeSection: React.FC = () => {
@@ -27,22 +27,21 @@ export const WhyUpgradeSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF8F5] text-[#1F1A17] relative overflow-hidden border-t border-[#EFE8DF]">
+    <section className="py-20 lg:py-28 bg-[#FFF9F9] text-[#221217] relative overflow-hidden border-t border-[#FF6B8B]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F0EB] border border-[#EFE8DF] text-[#8C6D53] text-xs font-semibold uppercase tracking-[0.2em]">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF0F3] border border-[#FF6B8B]/30 text-[#E83E8C] text-xs font-bold uppercase tracking-[0.2em]">
             <span>Digital Transformation</span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#1F1A17]">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#221217]">
             More than a website. A better way to run your beauty business online.
           </h2>
 
-          <p className="text-xs sm:text-sm text-[#6B5B52] font-light leading-relaxed">
-            See how upgrading to a Signature Digital System changes your daily client interactions and revenue streams.
+          <p className="text-xs sm:text-sm text-[#523B44] font-medium leading-relaxed">
+            See how upgrading to a Pro ₦500k Digital System changes your daily client interactions and revenue streams compared to Basic ₦350k.
           </p>
         </div>
 
@@ -57,40 +56,40 @@ export const WhyUpgradeSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="bg-[#F5F0EB] rounded-3xl p-8 border border-[#EFE8DF] shadow-lg space-y-6 flex flex-col justify-between"
+                className="bg-[#FFF0F3] rounded-3xl p-8 border border-[#FF6B8B]/30 shadow-lg space-y-6 flex flex-col justify-between"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#EFE8DF] flex items-center justify-center text-[#8C6D53] shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-[#FF6B8B]/30 flex items-center justify-center text-[#E83E8C] shadow-sm">
                     <IconComponent className="w-6 h-6" />
                   </div>
 
-                  <h3 className="font-serif font-bold text-xl text-[#1F1A17]">
+                  <h3 className="font-serif font-bold text-xl text-[#221217]">
                     {item.title}
                   </h3>
                 </div>
 
                 <div className="space-y-4">
                   {/* BEFORE Box */}
-                  <div className="bg-[#FAF8F5] p-4 rounded-2xl border border-rose-200/60 space-y-1 text-xs">
+                  <div className="bg-white p-4 rounded-2xl border border-rose-300 space-y-1 text-xs">
                     <div className="flex items-center gap-1.5 text-rose-700 font-bold uppercase tracking-wider text-[10px]">
                       <XCircle className="w-3.5 h-3.5" /> Before (Manual Process)
                     </div>
-                    <p className="text-[#6B5B52] font-light italic leading-relaxed">
+                    <p className="text-[#523B44] font-medium italic leading-relaxed">
                       &quot;{item.before}&quot;
                     </p>
                   </div>
 
                   {/* Arrow Indicator */}
                   <div className="text-center">
-                    <ArrowRight className="w-4 h-4 text-[#C5A880] mx-auto rotate-90" />
+                    <ArrowRight className="w-4 h-4 text-[#E83E8C] mx-auto rotate-90" />
                   </div>
 
                   {/* AFTER Box */}
-                  <div className="bg-[#1F1A17] text-[#FAF8F5] p-4 rounded-2xl border border-[#C5A880]/50 space-y-1 text-xs shadow-md">
-                    <div className="flex items-center gap-1.5 text-[#C5A880] font-bold uppercase tracking-wider text-[10px]">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> After (Signature System)
+                  <div className="bg-[#7E0027] text-white p-4 rounded-2xl border border-[#D4AF37] space-y-1 text-xs shadow-md">
+                    <div className="flex items-center gap-1.5 text-[#D4AF37] font-bold uppercase tracking-wider text-[10px]">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37]" /> After (Pro ₦500k System)
                     </div>
-                    <p className="text-[#FAF8F5]/90 font-light leading-relaxed">
+                    <p className="text-white/90 font-medium leading-relaxed">
                       {item.after}
                     </p>
                   </div>

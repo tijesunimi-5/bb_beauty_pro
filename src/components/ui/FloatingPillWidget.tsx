@@ -47,7 +47,7 @@ export const FloatingPillWidget: React.FC = () => {
                     : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10'
                 }`}
               >
-                <span>$300 Essential View</span>
+                <span>Basic (₦350k View)</span>
                 {isEssentialPage && <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded uppercase">Active</span>}
               </Link>
 
@@ -60,7 +60,7 @@ export const FloatingPillWidget: React.FC = () => {
                     : 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10'
                 }`}
               >
-                <span>$500 Signature View</span>
+                <span>Pro (₦500k View)</span>
                 {isSignaturePage && <span className="text-[9px] bg-white/20 px-1.5 py-0.5 rounded uppercase">Active</span>}
               </Link>
 
@@ -92,7 +92,7 @@ export const FloatingPillWidget: React.FC = () => {
       >
         <span className="w-2 h-2 rounded-full bg-[#FF6B8B] animate-pulse" />
         <span className="text-[11px] tracking-wide">
-          BB BEAUTY PRO • {isSignaturePage ? 'Signature' : isDashboardPage ? 'Dashboard' : 'Essential'}
+          BB BEAUTY PRO • {isSignaturePage ? 'Pro (₦500k)' : isDashboardPage ? 'Dashboard' : 'Basic (₦350k)'}
         </span>
       </button>
     </div>

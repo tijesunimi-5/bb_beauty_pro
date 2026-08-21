@@ -7,7 +7,7 @@ import { PortfolioCategory } from '../../types';
 import { Plus, Trash2, Upload, Image as ImageIcon, Lock, Crown } from 'lucide-react';
 
 export const PortfolioManager: React.FC = () => {
-  const { portfolio, profile, addPortfolioItem, deletePortfolioItem, toggleFeaturedPortfolio, activeDemoPackage, setActiveDemoPackage } = useMua();
+  const { portfolio, profile, addPortfolioItem, deletePortfolioItem, activeDemoPackage, setActiveDemoPackage } = useMua();
   
   const isSignature = activeDemoPackage === 'SIGNATURE';
   const [title, setTitle] = useState<string>('');
@@ -42,7 +42,7 @@ export const PortfolioManager: React.FC = () => {
           <p className="text-xs text-[#FAF8F5]/60">
             {isSignature
               ? 'Manage gallery looks, set featured images, and upload new campaign photography.'
-              : 'Essential $300 Mode: Agency team adds images via code. Upgrade to Signature $500 to upload photos directly.'}
+              : 'Basic ₦350k Mode: Agency team adds images via code. Upgrade to Pro ₦500k to upload photos directly.'}
           </p>
         </div>
 
@@ -175,8 +175,8 @@ export const PortfolioManager: React.FC = () => {
               <div className="space-y-1">
                 <h4 className="font-serif font-bold text-base text-[#FAF8F5]">Self-Serve Photo Upload Locked</h4>
                 <p className="text-xs text-[#FAF8F5]/60 leading-relaxed">
-                  In <strong>Essential $300</strong>, our developer agency team updates your portfolio pictures via code.
-                  Self-serve photo uploads, text editing, and delete tools are unlocked in the <strong>Signature $500 package</strong>.
+                  In <strong>Basic ₦350k</strong>, our agency developer team updates your portfolio pictures via code.
+                  Self-serve photo uploads, text editing, and delete tools are unlocked in the <strong>Pro ₦500k package</strong>.
                 </p>
               </div>
 
@@ -184,7 +184,7 @@ export const PortfolioManager: React.FC = () => {
                 onClick={() => setActiveDemoPackage('SIGNATURE')}
                 className="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition flex items-center justify-center gap-1.5"
               >
-                <Crown className="w-4 h-4" /> Unlock Signature $500 CMS
+                <Crown className="w-4 h-4" /> Unlock Pro ₦500k CMS
               </button>
             </div>
           )}

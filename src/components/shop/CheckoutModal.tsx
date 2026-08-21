@@ -53,7 +53,7 @@ export const CheckoutModal: React.FC = () => {
           <div className="bg-[#FFF0F3] px-6 py-4 border-b border-[#FF6B8B]/20 flex items-center justify-between">
             <div>
               <h3 className="font-serif font-bold text-base text-[#7E0027]">BB BEAUTY PRO Express Checkout</h3>
-              <p className="text-[11px] text-[#E83E8C] font-semibold">Signature $500 Full Online Processing</p>
+              <p className="text-[11px] text-[#E83E8C] font-semibold">Pro ₦500k Full Online Processing</p>
             </div>
             <button onClick={closeCheckout} className="p-2 text-[#221217]/60 hover:text-[#221217] rounded-full">
               <X className="w-5 h-5" />

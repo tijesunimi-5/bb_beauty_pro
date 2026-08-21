@@ -212,8 +212,8 @@ export const CartDrawer: React.FC = () => {
                   <ShieldCheck className="w-3.5 h-3.5 text-[#E83E8C]" />
                   <span>
                     {isSignature
-                      ? 'Signature $500: Full Online Checkout & Instant Receipt'
-                      : 'Essential $300: Quick WhatsApp Order Link'}
+                      ? 'Pro ₦500k: Full Online Payment Checkout'
+                      : 'Basic ₦350k: Quick WhatsApp Checkout'}
                   </span>
                 </div>
               </div>

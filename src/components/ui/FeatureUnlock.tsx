@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sparkles, Check, Crown, ArrowRight, Calendar, ShoppingBag, Palette, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Calendar, ShoppingBag, Palette, ShieldCheck, HelpCircle, Crown, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type FeatureCat = 'BRAND' | 'BOOKING' | 'PORTFOLIO' | 'SHOP' | 'CUSTOMIZATION' | 'SUPPORT';
@@ -13,7 +13,6 @@ export const FeatureUnlock: React.FC = () => {
     { id: 'BOOKING', label: 'Booking System', icon: Calendar },
     { id: 'SHOP', label: 'E-Commerce Shop', icon: ShoppingBag },
     { id: 'PORTFOLIO', label: 'Portfolio Gallery', icon: Palette },
-    { id: 'BRAND', label: 'Brand & Layout', icon: Sparkles },
     { id: 'CUSTOMIZATION', label: 'Questionnaire Builder', icon: HelpCircle },
     { id: 'SUPPORT', label: 'Support & Domain', icon: ShieldCheck },
   ];
@@ -22,7 +21,7 @@ export const FeatureUnlock: React.FC = () => {
     BOOKING: {
       essential: [
         'Standard booking inquiry request form',
-        'Collects client name, email, and preferred service',
+        'Collects client name, email, phone, and date',
         'Direct email or manual message delivery',
       ],
       signature: [
@@ -30,22 +29,22 @@ export const FeatureUnlock: React.FC = () => {
         'Date block management & custom daily time slots (10 AM, 12 PM, 2 PM)',
         'Event location, number of faces, & look preferences',
         'Inspiration image upload attachment UI',
-        'Unique request reference tracking (#AURA-8402)',
+        'Unique request reference tracking (#BBPRO-8402)',
       ],
       highlight: 'Eliminates 90% of back-and-forth DM questions before speaking to clients.',
     },
     SHOP: {
       essential: [
-        'Static product showcase section on homepage',
-        'Product shade color previews',
-        'External link to social DM or third-party page',
+        'Lip gloss collection showcase section on homepage',
+        'Product shade color previews & swatch selectors',
+        'Shopping bag drawer with direct WhatsApp checkout link',
       ],
       signature: [
         'Full Lip Collection e-commerce shop page',
         'Interactive shade pill selector with instant preview',
         'Slide-out Shopping Bag drawer with quantity controls',
         'Free US shipping progress calculator',
-        'Express Checkout preview modal (Apple Pay & Credit Card UI)',
+        'Express Online Checkout preview modal (Zelle, Venmo, Card UI)',
       ],
       highlight: 'Converts audience interest into immediate product orders.',
     },
@@ -66,7 +65,7 @@ export const FeatureUnlock: React.FC = () => {
     BRAND: {
       essential: [
         'Custom luxury editorial visual identity',
-        'Warm ivory background palette & refined typography',
+        'Vibrant blush rose & gold palette with refined typography',
         'Mobile responsive design',
       ],
       signature: [
@@ -75,7 +74,7 @@ export const FeatureUnlock: React.FC = () => {
         'Elevated editorial micro-interactions & toast notifications',
         'Coherent brand system uniting services & lip products',
       ],
-      highlight: 'Makes your business look like an established, worth-paying-for American beauty brand.',
+      highlight: 'Makes your business look like an established, worth-paying-for beauty brand.',
     },
     CUSTOMIZATION: {
       essential: [
@@ -95,7 +94,7 @@ export const FeatureUnlock: React.FC = () => {
         'Deployment on high-speed global CDN',
       ],
       signature: [
-        'Everything in Essential plus:',
+        'Everything in Basic plus:',
         'Management-ready architecture separated from UI components',
         'Complete client business dashboard for appointment & product tracking',
         'Priority technical support & backend readiness',
@@ -107,13 +106,13 @@ export const FeatureUnlock: React.FC = () => {
   const current = contentMap[activeCategory];
 
   return (
-    <div className="bg-[#F5F0EB] border border-[#EFE8DF] rounded-3xl p-6 sm:p-8 space-y-8 shadow-xl">
+    <div className="bg-[#FFF0F3] border border-[#FF6B8B]/20 rounded-3xl p-6 sm:p-8 space-y-8 shadow-xl">
       <div className="text-center max-w-xl mx-auto space-y-2">
-        <h3 className="font-serif text-2xl font-bold text-[#1F1A17]">
+        <h3 className="font-serif text-2xl font-bold text-[#221217]">
           Interactive Feature Unlock Matrix
         </h3>
-        <p className="text-xs text-[#6B5B52]">
-          Select a business capability below to compare $300 Essential vs $500 Signature functionality.
+        <p className="text-xs text-[#523B44]">
+          Select a business capability below to compare Basic (₦350k) vs Pro (₦500k) functionality.
         </p>
       </div>
 
@@ -128,11 +127,11 @@ export const FeatureUnlock: React.FC = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
                 isActive
-                  ? 'bg-[#1F1A17] text-[#FAF8F5] shadow-lg'
-                  : 'bg-[#FAF8F5] text-[#6B5B52] hover:text-[#1F1A17] hover:bg-white border border-[#EFE8DF]'
+                  ? 'bg-[#7E0027] text-white shadow-lg'
+                  : 'bg-white text-[#523B44] hover:text-[#7E0027] border border-[#FF6B8B]/20'
               }`}
             >
-              <IconComp className={`w-3.5 h-3.5 ${isActive ? 'text-[#C5A880]' : 'text-[#8C6D53]'}`} />
+              <IconComp className={`w-3.5 h-3.5 ${isActive ? 'text-[#D4AF37]' : 'text-[#E83E8C]'}`} />
               <span>{cat.label}</span>
             </button>
           );
@@ -149,49 +148,49 @@ export const FeatureUnlock: React.FC = () => {
           transition={{ duration: 0.3 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2"
         >
-          {/* Essential Column */}
-          <div className="bg-[#FAF8F5] p-6 rounded-2xl border border-[#EFE8DF] space-y-4">
-            <div className="flex items-center justify-between border-b border-[#EFE8DF] pb-3">
-              <span className="text-xs uppercase tracking-wider text-[#8C6D53] font-bold">
-                ESSENTIAL — $300
+          {/* Basic Column */}
+          <div className="bg-white p-6 rounded-2xl border border-[#FF6B8B]/20 space-y-4 shadow-sm">
+            <div className="flex items-center justify-between border-b border-[#FF6B8B]/20 pb-3">
+              <span className="text-xs uppercase tracking-wider text-[#E83E8C] font-bold">
+                BASIC — ₦350K
               </span>
-              <span className="text-[10px] text-[#6B5B52] bg-[#F5F0EB] px-2 py-0.5 rounded font-mono">
+              <span className="text-[10px] text-[#7E0027] bg-[#FFF0F3] px-2 py-0.5 rounded font-mono font-extrabold">
                 Refined Foundation
               </span>
             </div>
 
-            <ul className="space-y-3 text-xs text-[#6B5B52]">
+            <ul className="space-y-3 text-xs text-[#523B44]">
               {current.essential.map((item, i) => (
                 <li key={i} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-[#8C6D53] shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#E83E8C] shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Signature Column (Flagship) */}
-          <div className="bg-gradient-to-b from-[#1F1A17] to-[#2B231F] text-[#FAF8F5] p-6 rounded-2xl border-2 border-[#C5A880] space-y-4 shadow-xl relative overflow-hidden">
-            <div className="flex items-center justify-between border-b border-[#FAF8F5]/10 pb-3">
-              <span className="text-xs uppercase tracking-wider text-[#C5A880] font-bold flex items-center gap-1.5">
-                <Crown className="w-4 h-4" /> SIGNATURE — $500
+          {/* Pro Column */}
+          <div className="bg-gradient-to-b from-[#7E0027] to-[#59001B] text-white p-6 rounded-2xl border-2 border-[#D4AF37] space-y-4 shadow-xl relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+              <span className="text-xs uppercase tracking-wider text-[#D4AF37] font-bold flex items-center gap-1.5">
+                <Crown className="w-4 h-4 text-[#D4AF37]" /> PRO — ₦500K
               </span>
-              <span className="text-[10px] bg-[#C5A880] text-[#1F1A17] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+              <span className="text-[10px] bg-[#D4AF37] text-[#121110] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
                 Flagship System
               </span>
             </div>
 
-            <ul className="space-y-3 text-xs text-[#FAF8F5]/90">
+            <ul className="space-y-3 text-xs text-white/90">
               {current.signature.map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 font-light">
-                  <Check className="w-4 h-4 text-[#C5A880] shrink-0 mt-0.5" />
+                <li key={i} className="flex items-start gap-2.5 font-medium">
+                  <Check className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
 
             {/* Highlight outcome banner */}
-            <div className="pt-3 border-t border-[#FAF8F5]/10 text-[11px] text-[#C5A880] font-serif italic">
+            <div className="pt-3 border-t border-white/10 text-[11px] text-[#D4AF37] font-serif italic">
               ✦ {current.highlight}
             </div>
           </div>

@@ -46,7 +46,7 @@ export const ServicesManager: React.FC = () => {
           <p className="text-xs text-[#FAF8F5]/60">
             {isSignature
               ? 'Edit makeup service packages, update pricing, and adjust duration details.'
-              : 'Essential $300 Mode: Agency team updates prices & package details via code for you.'}
+              : 'Basic ₦350k Mode: Agency team updates prices & package details via code for you.'}
           </p>
         </div>
 
@@ -192,8 +192,8 @@ export const ServicesManager: React.FC = () => {
               <div className="space-y-1">
                 <h4 className="font-serif font-bold text-base text-[#FAF8F5]">Package Price Editing Locked</h4>
                 <p className="text-xs text-[#FAF8F5]/60 leading-relaxed">
-                  In <strong>Essential $300</strong>, our agency developer team updates your service descriptions and prices via code.
-                  Self-serve price editing &amp; package creation are unlocked in the <strong>Signature $500 package</strong>.
+                  In <strong>Basic ₦350k</strong>, our agency developer team updates your service descriptions and prices via code.
+                  Self-serve price editing &amp; package creation are unlocked in the <strong>Pro ₦500k package</strong>.
                 </p>
               </div>
 
@@ -201,7 +201,7 @@ export const ServicesManager: React.FC = () => {
                 onClick={() => setActiveDemoPackage('SIGNATURE')}
                 className="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#121110] bg-[#C5A880] hover:bg-[#d8bb93] transition flex items-center justify-center gap-1.5"
               >
-                <Crown className="w-4 h-4" /> Unlock Signature $500 CMS
+                <Crown className="w-4 h-4" /> Unlock Pro ₦500k CMS
               </button>
             </div>
           )}

@@ -139,7 +139,7 @@ export const BookingModal: React.FC = () => {
               <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
                 isSignature ? 'bg-[#C5A880] text-[#1F1A17]' : 'bg-[#EFE8DF] text-[#1F1A17]'
               }`}>
-                {isSignature ? 'Signature $500 Active' : 'Essential $300 Active'}
+                {isSignature ? 'Pro ₦500k Active' : 'Basic ₦350k Active'}
               </span>
               <span className="hidden sm:inline">
                 {isSignature
@@ -154,7 +154,7 @@ export const BookingModal: React.FC = () => {
                 isSignature ? 'text-[#C5A880] hover:text-white' : 'text-[#8C6D53] hover:text-[#1F1A17]'
               }`}
             >
-              Switch to {isSignature ? '$300 Essential' : '$500 Signature'}
+              Switch to {isSignature ? 'Basic (₦350k)' : 'Pro (₦500k)'}
             </button>
           </div>
 
@@ -208,7 +208,7 @@ export const BookingModal: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs flex items-center gap-2">
                   <Lock className="w-4 h-4 text-amber-700 shrink-0" />
                   <span>
-                    <strong>Essential $300 Mode:</strong> Basic booking inquiry form. Multi-step calendar, time slots, &amp; custom intake questions are unlocked in the <strong>$500 Signature package</strong>!
+                    <strong>Basic ₦350k Mode:</strong> Basic booking inquiry form. Multi-step calendar, time slots, &amp; custom intake questions are unlocked in the <strong>Pro ₦500k package</strong>!
                   </span>
                 </div>
 

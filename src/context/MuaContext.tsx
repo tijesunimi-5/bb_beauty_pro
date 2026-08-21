@@ -253,7 +253,7 @@ export const MuaProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (activeDemoPackage === pkg) return;
     setActiveDemoPackage(pkg);
     saveStateToStorage({ activeDemoPackage: pkg });
-    showToast(`Switched preview experience to $${pkg === 'ESSENTIAL' ? '300 Essential' : '500 Signature'}`);
+    showToast(`Switched preview experience to ${pkg === 'ESSENTIAL' ? 'Basic (₦350k)' : 'Pro (₦500k)'}`);
   };
 
   // Profile CMS
